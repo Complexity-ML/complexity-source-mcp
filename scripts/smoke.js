@@ -17,7 +17,7 @@ const readme = await client.callTool({
   name: 'read_local_source',
   arguments: { path: new URL('../README.md', import.meta.url).pathname, maxChars: 512 },
 })
-if (tools.tools.length !== 6) throw new Error(`Expected 6 tools, received ${tools.tools.length}`)
+if (tools.tools.length !== 10) throw new Error(`Expected 10 tools, received ${tools.tools.length}`)
 if (policy.isError) throw new Error('Policy tool returned an error.')
 if (readme.isError || !readme.structuredContent?.source?.sha256) {
   throw new Error('Local source provenance was not returned.')

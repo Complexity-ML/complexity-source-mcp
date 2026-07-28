@@ -1,0 +1,660 @@
+[
+  {
+    "key": "world:aethoria",
+    "kind": "world",
+    "name": "Aethoria",
+    "aliases": ["The Shattered Realm", "Aethorie"],
+    "summary": "A realm divided into seven provinces after a celestial impact fractured its moon.",
+    "description": "Aethoria is a maritime fantasy realm whose broken moon drives magical tides. The Starfall created emberglass in the mountains, awakened drowned archives beneath the western sea, and destabilized the old royal roads.",
+    "facts": [
+      "Magic intensifies during the silver tide every ninth night.",
+      "No monarch has ruled all seven provinces since the Salt Rebellion.",
+      "Fragments of the moon are called moonshards."
+    ],
+    "tags": ["fantasy", "world", "magic", "royaume", "lore"],
+    "attributes": { "provinces": 7, "calendarEra": "After Starfall", "primaryMagic": "tidal resonance" },
+    "relations": [
+      { "type": "contains", "targetKey": "location:lumenport" },
+      { "type": "contains", "targetKey": "location:ashwood" },
+      { "type": "contains", "targetKey": "location:glasspeak" }
+    ]
+  },
+  {
+    "key": "location:lumenport",
+    "kind": "location",
+    "name": "Lumenport",
+    "aliases": ["City of Nine Lanterns", "Port-Lumière"],
+    "summary": "A free harbor city built around nine ancient lighthouse towers.",
+    "description": "Lumenport is the commercial heart of Aethoria. Its nine towers stabilize the magical tide around the bay, while tunnels beneath the oldest tower descend toward the Sunken Gate.",
+    "facts": [
+      "The Lantern Court governs the harbor.",
+      "The ninth lighthouse has been silent for forty-two years.",
+      "Emberglass trade is legal only through the eastern quay."
+    ],
+    "tags": ["city", "harbor", "commerce", "ville", "port"],
+    "attributes": { "population": 84000, "province": "Free Coast", "danger": "medium" },
+    "relations": [
+      { "type": "governed_by", "targetKey": "faction:lantern_court" },
+      { "type": "conceals", "targetKey": "location:sunken_gate" },
+      { "type": "home_of", "targetKey": "character:nera_quill" }
+    ]
+  },
+  {
+    "key": "location:ashwood",
+    "kind": "location",
+    "name": "The Ashwood",
+    "aliases": ["Forêt de Cendre", "Cinder Forest"],
+    "summary": "A black-barked forest that remembers promises spoken beneath its canopy.",
+    "description": "The Ashwood records sworn promises in the rings of its trees. Broken oaths manifest as pale hunting beasts, while honored agreements open safe paths through the forest.",
+    "facts": [
+      "Open flame is forbidden by the Thorn Covenant.",
+      "Root paths move after every silver tide.",
+      "The Root Compass can reveal a path to the forest heart."
+    ],
+    "tags": ["forest", "oaths", "nature", "forêt", "magic"],
+    "attributes": { "province": "Verdant March", "danger": "high", "terrain": "enchanted forest" },
+    "relations": [
+      { "type": "protected_by", "targetKey": "faction:thorn_covenant" },
+      { "type": "inhabited_by", "targetKey": "creature:hollow_stag" },
+      { "type": "contains", "targetKey": "artifact:root_compass" }
+    ]
+  },
+  {
+    "key": "location:glasspeak",
+    "kind": "location",
+    "name": "Glasspeak",
+    "aliases": ["Mont de Verre", "The Burning Spine"],
+    "summary": "A volcanic mountain whose moonshard veins produce emberglass.",
+    "description": "Glasspeak is mined through cooled lava tubes. Emberglass stores heat and memory, making it valuable for weapons, archives, and engines. The deepest mine is claimed by an ancient ember wyrm.",
+    "facts": [
+      "The Ember Cartel controls most legal extraction.",
+      "Mining stops during the silver tide because the glass begins to sing.",
+      "The Emberglass Crown was forged in the first deep mine."
+    ],
+    "tags": ["mountain", "mine", "emberglass", "montagne", "volcano"],
+    "attributes": { "province": "Cinder Reach", "danger": "severe", "resource": "emberglass" },
+    "relations": [
+      { "type": "controlled_by", "targetKey": "faction:ember_cartel" },
+      { "type": "lair_of", "targetKey": "creature:ember_wyrm" },
+      { "type": "origin_of", "targetKey": "artifact:emberglass_crown" }
+    ]
+  },
+  {
+    "key": "location:drowned_archive",
+    "kind": "location",
+    "name": "The Drowned Archive",
+    "aliases": ["Bibliothèque Noyée", "Archive Below"],
+    "summary": "A submerged library accessible only when the western tide reverses.",
+    "description": "The Drowned Archive contains records from before the Starfall. Air-filled reading chambers rotate through the structure as the tide changes, and tide wraiths guard books removed without permission.",
+    "facts": [
+      "The archive opens for fifty-three minutes during a reverse tide.",
+      "Its catalog is encoded in the Bell of Nine Tides.",
+      "Kael Tidemark knows the safe entry sequence."
+    ],
+    "tags": ["archive", "underwater", "books", "bibliothèque", "ocean"],
+    "attributes": { "province": "Western Shoals", "danger": "high", "accessWindowMinutes": 53 },
+    "relations": [
+      { "type": "guarded_by", "targetKey": "creature:tide_wraith" },
+      { "type": "mapped_by", "targetKey": "artifact:bell_nine_tides" },
+      { "type": "known_by", "targetKey": "character:kael_tidemark" }
+    ]
+  },
+  {
+    "key": "location:vale_mirrors",
+    "kind": "location",
+    "name": "Vale of Mirrors",
+    "aliases": ["Vallée des Miroirs"],
+    "summary": "A crystal valley where reflections can reveal possible futures.",
+    "description": "The Vale of Mirrors contains natural crystal sheets that show probable futures rather than literal reflections. Predictions become less reliable when spoken aloud.",
+    "facts": [
+      "Mirror moths feed on abandoned predictions.",
+      "Oria Vayne lost her shadow in the central mirror.",
+      "Metal weapons fracture the prophetic surfaces."
+    ],
+    "tags": ["valley", "prophecy", "crystal", "vallée", "future"],
+    "attributes": { "province": "High Gleam", "danger": "medium", "magic": "probability reflection" },
+    "relations": [
+      { "type": "inhabited_by", "targetKey": "creature:mirror_moth" },
+      { "type": "marked", "targetKey": "character:oria_vayne" }
+    ]
+  },
+  {
+    "key": "location:obsidian_pass",
+    "kind": "location",
+    "name": "Obsidian Pass",
+    "aliases": ["Col d'Obsidienne"],
+    "summary": "The only stable road between Glasspeak and the Free Coast.",
+    "description": "Obsidian Pass is a narrow caravan route lined with black glass cliffs. Brann Ashward maintains its watchtowers while the Ember Cartel taxes every emberglass shipment.",
+    "facts": [
+      "The northern bridge can carry only one loaded wagon at a time.",
+      "Hollow stags sometimes cross the pass before a broken oath is exposed.",
+      "A smuggler tunnel exits beneath watchtower three."
+    ],
+    "tags": ["pass", "road", "trade", "col", "caravan"],
+    "attributes": { "province": "Cinder Reach", "danger": "medium", "toll": "three silver crowns per wagon" },
+    "relations": [
+      { "type": "watched_by", "targetKey": "character:brann_ashward" },
+      { "type": "taxed_by", "targetKey": "faction:ember_cartel" }
+    ]
+  },
+  {
+    "key": "location:sunken_gate",
+    "kind": "location",
+    "name": "The Sunken Gate",
+    "aliases": ["Porte Engloutie"],
+    "summary": "A sealed pre-Starfall transit gate hidden below Lumenport.",
+    "description": "The Sunken Gate once connected the seven provincial capitals. It requires the Moon Key, the ninth lighthouse beam, and a living Tidebound navigator to open safely.",
+    "facts": [
+      "Opening it without the ninth beam floods the lower city.",
+      "The Moon Key supplies the gate's missing lunar signature.",
+      "The Tidebound preserve the route sequence."
+    ],
+    "tags": ["gate", "ancient", "transport", "porte", "quest"],
+    "attributes": { "province": "Free Coast", "danger": "severe", "status": "sealed" },
+    "relations": [
+      { "type": "requires", "targetKey": "artifact:moon_key" },
+      { "type": "requires", "targetKey": "faction:tidebound" },
+      { "type": "goal_of", "targetKey": "quest:gates_below" }
+    ]
+  },
+  {
+    "key": "faction:lantern_court",
+    "kind": "faction",
+    "name": "The Lantern Court",
+    "aliases": ["Cour des Lanternes"],
+    "summary": "Nine elected keepers who govern Lumenport and its lighthouse network.",
+    "description": "The Lantern Court balances merchant interests against public safety. Each keeper controls one lighthouse, but the ninth seat has remained vacant since its tower went dark.",
+    "facts": [
+      "Major decisions require six lantern votes.",
+      "Nera Quill serves as the court's archivist but has no vote.",
+      "The court secretly funds restoration of the ninth lighthouse."
+    ],
+    "tags": ["government", "lighthouse", "politics", "faction", "gouvernement"],
+    "attributes": { "members": 8, "base": "Lumenport", "alignment": "pragmatic" },
+    "relations": [
+      { "type": "governs", "targetKey": "location:lumenport" },
+      { "type": "employs", "targetKey": "character:nera_quill" },
+      { "type": "opposes", "targetKey": "faction:ember_cartel" }
+    ]
+  },
+  {
+    "key": "faction:ember_cartel",
+    "kind": "faction",
+    "name": "The Ember Cartel",
+    "aliases": ["Cartel de Braise"],
+    "summary": "A mining consortium controlling emberglass extraction and coastal distribution.",
+    "description": "The Ember Cartel owns the largest Glasspeak mines and maintains private guards along Obsidian Pass. It seeks the Emberglass Crown to legitimize a permanent monopoly.",
+    "facts": [
+      "The cartel controls roughly seventy percent of legal emberglass.",
+      "Its ledgers use heat-reactive ink.",
+      "It has placed a bounty on Sylva Morn."
+    ],
+    "tags": ["mining", "trade", "emberglass", "faction", "cartel"],
+    "attributes": { "base": "Glasspeak", "alignment": "mercantile", "marketSharePercent": 70 },
+    "relations": [
+      { "type": "controls", "targetKey": "location:glasspeak" },
+      { "type": "hunts", "targetKey": "character:sylva_morn" },
+      { "type": "seeks", "targetKey": "artifact:emberglass_crown" }
+    ]
+  },
+  {
+    "key": "faction:tidebound",
+    "kind": "faction",
+    "name": "The Tidebound",
+    "aliases": ["Liés-des-Marées"],
+    "summary": "Navigators trained to sense lunar tides and traverse drowned roads.",
+    "description": "Tidebound navigators tattoo route songs onto their arms. Their order was outlawed after the Salt Rebellion, but small crews still guide ships and protect the Drowned Archive.",
+    "facts": [
+      "Only living Tidebound navigators can stabilize the Sunken Gate.",
+      "Their route songs change after each Starfall anniversary.",
+      "Kael Tidemark leads the remaining western crew."
+    ],
+    "tags": ["navigators", "tide", "secret order", "faction", "marée"],
+    "attributes": { "base": "Western Shoals", "alignment": "protective", "legalStatus": "outlawed" },
+    "relations": [
+      { "type": "led_by", "targetKey": "character:kael_tidemark" },
+      { "type": "protects", "targetKey": "location:drowned_archive" },
+      { "type": "can_open", "targetKey": "location:sunken_gate" }
+    ]
+  },
+  {
+    "key": "faction:thorn_covenant",
+    "kind": "faction",
+    "name": "The Thorn Covenant",
+    "aliases": ["Pacte des Épines"],
+    "summary": "Wardens who enforce oath law and protect the Ashwood.",
+    "description": "The Thorn Covenant mediates promises made within the Ashwood and hunts oathbreakers before the forest creates hollow stags to do so.",
+    "facts": [
+      "Its wardens carry no metal inside the forest.",
+      "Sylva Morn is the youngest covenant speaker.",
+      "The covenant signed the Ashwood Pact with Lumenport."
+    ],
+    "tags": ["wardens", "forest", "oaths", "faction", "serment"],
+    "attributes": { "base": "Ashwood", "alignment": "lawful", "members": 63 },
+    "relations": [
+      { "type": "protects", "targetKey": "location:ashwood" },
+      { "type": "represented_by", "targetKey": "character:sylva_morn" },
+      { "type": "bound_by", "targetKey": "event:ashwood_pact" }
+    ]
+  },
+  {
+    "key": "character:elian_voss",
+    "kind": "character",
+    "name": "Elian Voss",
+    "aliases": ["The Ninth Keeper"],
+    "summary": "A disgraced lighthouse engineer attempting to relight Lumenport's ninth tower.",
+    "description": "Elian designed a moonshard lens for the ninth lighthouse but was blamed when its first test failed. He now works beneath the tower and believes the failure was sabotage.",
+    "facts": [
+      "He needs the Moon Key to calibrate the replacement lens.",
+      "He distrusts the Ember Cartel.",
+      "He knows how to prevent the Sunken Gate from flooding Lumenport."
+    ],
+    "tags": ["engineer", "lighthouse", "character", "ingénieur", "quest"],
+    "attributes": { "age": 41, "home": "Lumenport", "role": "lighthouse engineer" },
+    "relations": [
+      { "type": "needs", "targetKey": "artifact:moon_key" },
+      { "type": "allied_with", "targetKey": "character:nera_quill" },
+      { "type": "involved_in", "targetKey": "quest:gates_below" }
+    ]
+  },
+  {
+    "key": "character:nera_quill",
+    "kind": "character",
+    "name": "Nera Quill",
+    "aliases": ["Archivist of Nine Lamps"],
+    "summary": "The Lantern Court archivist who discovered the Sunken Gate restoration records.",
+    "description": "Nera is a meticulous historian who compares heat-ink ledgers with pre-Starfall maps. She suspects the Ember Cartel sabotaged the ninth lighthouse.",
+    "facts": [
+      "She can read heat-reactive cartel ink.",
+      "She keeps a hidden copy of the gate sequence.",
+      "She is Elian Voss's closest ally."
+    ],
+    "tags": ["archivist", "investigator", "character", "historienne", "lore"],
+    "attributes": { "age": 34, "home": "Lumenport", "role": "court archivist" },
+    "relations": [
+      { "type": "works_for", "targetKey": "faction:lantern_court" },
+      { "type": "allied_with", "targetKey": "character:elian_voss" },
+      { "type": "investigates", "targetKey": "faction:ember_cartel" }
+    ]
+  },
+  {
+    "key": "character:brann_ashward",
+    "kind": "character",
+    "name": "Brann Ashward",
+    "aliases": ["Warden of Obsidian Pass"],
+    "summary": "A veteran road warden responsible for keeping Obsidian Pass open.",
+    "description": "Brann commands three watchtowers and knows the cartel's smuggling routes. He carries an unpaid oath to protect Sylva Morn, which draws hollow stags toward him.",
+    "facts": [
+      "He knows the location of the smuggler tunnel.",
+      "His oath to protect Sylva remains unfulfilled.",
+      "He refuses cartel payment."
+    ],
+    "tags": ["warden", "soldier", "character", "gardien", "pass"],
+    "attributes": { "age": 52, "home": "Obsidian Pass", "role": "road warden" },
+    "relations": [
+      { "type": "guards", "targetKey": "location:obsidian_pass" },
+      { "type": "protects", "targetKey": "character:sylva_morn" },
+      { "type": "opposes", "targetKey": "faction:ember_cartel" }
+    ]
+  },
+  {
+    "key": "character:sylva_morn",
+    "kind": "character",
+    "name": "Sylva Morn",
+    "aliases": ["Young Thorn Speaker"],
+    "summary": "A Thorn Covenant speaker trying to renew the failing Ashwood Pact.",
+    "description": "Sylva can hear promises stored in tree rings. She stole evidence that the Ember Cartel burned an oath-tree while expanding a secret mine.",
+    "facts": [
+      "The cartel has placed a bounty on her.",
+      "She can safely command the Root Compass.",
+      "She needs Brann to publicly fulfill his protection oath."
+    ],
+    "tags": ["druid", "oaths", "character", "druide", "forest"],
+    "attributes": { "age": 23, "home": "Ashwood", "role": "covenant speaker" },
+    "relations": [
+      { "type": "represents", "targetKey": "faction:thorn_covenant" },
+      { "type": "uses", "targetKey": "artifact:root_compass" },
+      { "type": "targeted_by", "targetKey": "faction:ember_cartel" }
+    ]
+  },
+  {
+    "key": "character:kael_tidemark",
+    "kind": "character",
+    "name": "Kael Tidemark",
+    "aliases": ["Last Western Navigator"],
+    "summary": "Leader of the remaining Tidebound crew and keeper of drowned routes.",
+    "description": "Kael memorized the route songs needed for the Drowned Archive and Sunken Gate. He will help Lumenport only if the Lantern Court clears the Tidebound of treason.",
+    "facts": [
+      "He knows the safe entry sequence to the Drowned Archive.",
+      "His living tide mark can stabilize the Sunken Gate.",
+      "He survived the Salt Rebellion as a child."
+    ],
+    "tags": ["navigator", "tide", "character", "navigateur", "gate"],
+    "attributes": { "age": 38, "home": "Western Shoals", "role": "Tidebound leader" },
+    "relations": [
+      { "type": "leads", "targetKey": "faction:tidebound" },
+      { "type": "can_open", "targetKey": "location:sunken_gate" },
+      { "type": "knows", "targetKey": "location:drowned_archive" }
+    ]
+  },
+  {
+    "key": "character:oria_vayne",
+    "kind": "character",
+    "name": "Oria Vayne",
+    "aliases": ["The Shadowless Seer"],
+    "summary": "A prophet whose shadow remains trapped in the Vale of Mirrors.",
+    "description": "Oria interprets future reflections but refuses to state predictions directly. Her missing shadow acts independently during the silver tide.",
+    "facts": [
+      "She predicted that the Emberglass Crown must remain unclaimed.",
+      "Mirror moths gather around her written prophecies.",
+      "Her shadow knows where the Crown was hidden."
+    ],
+    "tags": ["seer", "prophecy", "character", "prophète", "mirror"],
+    "attributes": { "age": 67, "home": "Vale of Mirrors", "role": "seer" },
+    "relations": [
+      { "type": "bound_to", "targetKey": "location:vale_mirrors" },
+      { "type": "warns_about", "targetKey": "artifact:emberglass_crown" },
+      { "type": "followed_by", "targetKey": "creature:mirror_moth" }
+    ]
+  },
+  {
+    "key": "creature:hollow_stag",
+    "kind": "creature",
+    "name": "Hollow Stag",
+    "aliases": ["Cerf Creux", "Oath Hunter"],
+    "summary": "A pale forest predator formed when an important oath is broken.",
+    "description": "A hollow stag tracks the person responsible for a broken promise. It ignores anyone who truthfully acknowledges the oath and can be dismissed when restitution begins.",
+    "facts": [
+      "It cannot cross a circle of living thorn.",
+      "It follows unresolved oaths rather than scent.",
+      "Killing one causes another to emerge the next night."
+    ],
+    "tags": ["creature", "forest", "oath", "créature", "stag"],
+    "attributes": { "danger": "high", "habitat": "Ashwood", "weakness": "truthful restitution" },
+    "relations": [
+      { "type": "inhabits", "targetKey": "location:ashwood" },
+      { "type": "tracks", "targetKey": "character:brann_ashward" }
+    ]
+  },
+  {
+    "key": "creature:ember_wyrm",
+    "kind": "creature",
+    "name": "Sarthuun the Ember Wyrm",
+    "aliases": ["Dragon de Braise", "Deep-Mine Wyrm"],
+    "summary": "An ancient wyrm sleeping around the richest emberglass vein in Glasspeak.",
+    "description": "Sarthuun absorbs stored memories from emberglass. The wyrm attacks miners who carry forged memories but bargains for authentic stories.",
+    "facts": [
+      "Cold seawater hardens its scales temporarily.",
+      "It remembers the original owner of the Emberglass Crown.",
+      "It has not left the deep mine for ninety years."
+    ],
+    "tags": ["dragon", "creature", "emberglass", "créature", "wyrm"],
+    "attributes": { "danger": "extreme", "habitat": "Glasspeak", "motive": "collect authentic memories" },
+    "relations": [
+      { "type": "inhabits", "targetKey": "location:glasspeak" },
+      { "type": "knows_history_of", "targetKey": "artifact:emberglass_crown" }
+    ]
+  },
+  {
+    "key": "creature:tide_wraith",
+    "kind": "creature",
+    "name": "Tide Wraith",
+    "aliases": ["Spectre de Marée", "Archive Warden"],
+    "summary": "A drowned guardian that retrieves knowledge stolen from the Drowned Archive.",
+    "description": "Tide wraiths pass through water and written ink. They ignore visitors who return copied knowledge before the reverse tide ends.",
+    "facts": [
+      "They cannot read text written in salt.",
+      "The Bell of Nine Tides can delay them for nine breaths.",
+      "They pursue stolen books across any body of seawater."
+    ],
+    "tags": ["undead", "water", "archive", "créature", "spectre"],
+    "attributes": { "danger": "high", "habitat": "Drowned Archive", "weakness": "salt script" },
+    "relations": [
+      { "type": "guards", "targetKey": "location:drowned_archive" },
+      { "type": "repelled_by", "targetKey": "artifact:bell_nine_tides" }
+    ]
+  },
+  {
+    "key": "creature:mirror_moth",
+    "kind": "creature",
+    "name": "Mirror Moth",
+    "aliases": ["Papillon-Miroir"],
+    "summary": "A crystal-winged insect that consumes discarded possible futures.",
+    "description": "Mirror moths erase futures that observers reject. A swarm can make one improbable outcome temporarily more likely by consuming its alternatives.",
+    "facts": [
+      "Their wings become dark after feeding on a violent future.",
+      "They follow Oria Vayne during the silver tide.",
+      "They are harmless unless trapped near an active prophecy."
+    ],
+    "tags": ["insect", "prophecy", "crystal", "créature", "moth"],
+    "attributes": { "danger": "low", "habitat": "Vale of Mirrors", "diet": "discarded futures" },
+    "relations": [
+      { "type": "inhabits", "targetKey": "location:vale_mirrors" },
+      { "type": "follows", "targetKey": "character:oria_vayne" }
+    ]
+  },
+  {
+    "key": "artifact:moon_key",
+    "kind": "artifact",
+    "name": "The Moon Key",
+    "aliases": ["Clé Lunaire", "Silver Tooth"],
+    "summary": "A moonshard instrument required to reactivate pre-Starfall gates.",
+    "description": "The Moon Key stores a stable copy of the old moon's magical signature. It can calibrate the ninth lighthouse and unlock the Sunken Gate when used by a Tidebound navigator.",
+    "facts": [
+      "It is currently hidden inside the Root Compass.",
+      "It becomes visible only under ninth-night moonlight.",
+      "Elian Voss needs it to repair the lighthouse lens."
+    ],
+    "tags": ["artifact", "moon", "key", "artefact", "quest"],
+    "attributes": { "material": "moonshard silver", "status": "hidden", "power": "lunar calibration" },
+    "relations": [
+      { "type": "hidden_in", "targetKey": "artifact:root_compass" },
+      { "type": "required_by", "targetKey": "location:sunken_gate" },
+      { "type": "sought_by", "targetKey": "character:elian_voss" }
+    ]
+  },
+  {
+    "key": "artifact:emberglass_crown",
+    "kind": "artifact",
+    "name": "The Emberglass Crown",
+    "aliases": ["Couronne de Verre-Ardent"],
+    "summary": "A crown that transfers stored memories from a ruler to a chosen successor.",
+    "description": "The Crown was forged before the Salt Rebellion. It grants no legal authority by itself, but the Ember Cartel claims possession would prove a right to govern Cinder Reach.",
+    "facts": [
+      "Oria Vayne predicted disaster if anyone claims it.",
+      "Sarthuun remembers its original owner.",
+      "It is hidden in a future reflection rather than a physical vault."
+    ],
+    "tags": ["artifact", "crown", "memory", "artefact", "politics"],
+    "attributes": { "material": "emberglass", "status": "missing", "power": "memory succession" },
+    "relations": [
+      { "type": "sought_by", "targetKey": "faction:ember_cartel" },
+      { "type": "known_by", "targetKey": "creature:ember_wyrm" },
+      { "type": "foretold_by", "targetKey": "character:oria_vayne" }
+    ]
+  },
+  {
+    "key": "artifact:root_compass",
+    "kind": "artifact",
+    "name": "The Root Compass",
+    "aliases": ["Boussole-Racine"],
+    "summary": "A living wooden compass that maps the moving paths of the Ashwood.",
+    "description": "The Root Compass points toward fulfilled promises. Sylva Morn can command it safely, and its hollow center secretly contains the Moon Key.",
+    "facts": [
+      "It refuses to guide anyone currently breaking an oath.",
+      "Its needle is a living thorn.",
+      "The Moon Key is concealed in its central seed chamber."
+    ],
+    "tags": ["artifact", "forest", "navigation", "artefact", "compass"],
+    "attributes": { "material": "living ashwood", "status": "held by Sylva", "power": "oath navigation" },
+    "relations": [
+      { "type": "used_by", "targetKey": "character:sylva_morn" },
+      { "type": "contains", "targetKey": "artifact:moon_key" },
+      { "type": "maps", "targetKey": "location:ashwood" }
+    ]
+  },
+  {
+    "key": "artifact:bell_nine_tides",
+    "kind": "artifact",
+    "name": "The Bell of Nine Tides",
+    "aliases": ["Cloche des Neuf Marées"],
+    "summary": "A bronze handbell encoding the catalog and opening rhythm of the Drowned Archive.",
+    "description": "Each ring corresponds to a moving archive chamber. The correct nine-note sequence reveals a requested subject and delays tide wraiths for nine breaths.",
+    "facts": [
+      "Kael Tidemark knows seven of the nine tones.",
+      "The eighth tone is recorded in Nera Quill's hidden map.",
+      "The ninth tone can only be heard during a reverse tide."
+    ],
+    "tags": ["artifact", "archive", "bell", "artefact", "tide"],
+    "attributes": { "material": "salt bronze", "status": "fragmented knowledge", "power": "archive indexing" },
+    "relations": [
+      { "type": "maps", "targetKey": "location:drowned_archive" },
+      { "type": "known_by", "targetKey": "character:kael_tidemark" },
+      { "type": "repels", "targetKey": "creature:tide_wraith" }
+    ]
+  },
+  {
+    "key": "quest:gates_below",
+    "kind": "quest",
+    "name": "The Gates Below",
+    "aliases": ["Les Portes d'En Bas"],
+    "summary": "Restore the ninth lighthouse and open the Sunken Gate without flooding Lumenport.",
+    "description": "The mission requires recovering the Moon Key from the Root Compass, clearing the Tidebound of treason, recruiting Kael Tidemark, and calibrating Elian Voss's moonshard lens.",
+    "facts": [
+      "The gate must be opened during the silver tide.",
+      "Skipping the lighthouse repair floods the lower city.",
+      "Kael and Elian must operate their components simultaneously."
+    ],
+    "tags": ["quest", "gate", "lighthouse", "quête", "main story"],
+    "attributes": { "difficulty": "epic", "region": "Lumenport", "recommendedParty": 5 },
+    "relations": [
+      { "type": "requires", "targetKey": "artifact:moon_key" },
+      { "type": "requires", "targetKey": "character:kael_tidemark" },
+      { "type": "requires", "targetKey": "character:elian_voss" },
+      { "type": "targets", "targetKey": "location:sunken_gate" }
+    ]
+  },
+  {
+    "key": "quest:crown_without_flame",
+    "kind": "quest",
+    "name": "The Crown Without Flame",
+    "aliases": ["La Couronne sans Flamme"],
+    "summary": "Prevent the Ember Cartel from retrieving the Emberglass Crown from a future reflection.",
+    "description": "The party must question Sarthuun, interpret Oria Vayne's indirect prophecy, and use mirror moths to collapse the future in which the Cartel claims the Crown.",
+    "facts": [
+      "Destroying the Crown releases every memory stored inside it.",
+      "The Cartel plans to enter the Vale during the next silver tide.",
+      "Sarthuun will trade information for a true royal memory."
+    ],
+    "tags": ["quest", "crown", "prophecy", "quête", "politics"],
+    "attributes": { "difficulty": "high", "region": "Vale of Mirrors", "recommendedParty": 4 },
+    "relations": [
+      { "type": "protects", "targetKey": "artifact:emberglass_crown" },
+      { "type": "opposes", "targetKey": "faction:ember_cartel" },
+      { "type": "requires", "targetKey": "character:oria_vayne" },
+      { "type": "requires", "targetKey": "creature:ember_wyrm" }
+    ]
+  },
+  {
+    "key": "quest:forest_oath",
+    "kind": "quest",
+    "name": "The Forest Oath",
+    "aliases": ["Le Serment de la Forêt"],
+    "summary": "Renew the Ashwood Pact before hollow stags overwhelm Obsidian Pass.",
+    "description": "Sylva must expose the Cartel's burned oath-tree while Brann publicly fulfills his promise to protect her. The Root Compass then reveals the forest heart where the pact can be renewed.",
+    "facts": [
+      "Killing hollow stags cannot solve the underlying broken oaths.",
+      "Brann's public restitution opens the first safe path.",
+      "The Cartel evidence is hidden in watchtower three."
+    ],
+    "tags": ["quest", "forest", "oath", "quête", "investigation"],
+    "attributes": { "difficulty": "medium", "region": "Ashwood", "recommendedParty": 3 },
+    "relations": [
+      { "type": "requires", "targetKey": "character:sylva_morn" },
+      { "type": "requires", "targetKey": "character:brann_ashward" },
+      { "type": "uses", "targetKey": "artifact:root_compass" },
+      { "type": "opposes", "targetKey": "faction:ember_cartel" }
+    ]
+  },
+  {
+    "key": "quest:silent_bell",
+    "kind": "quest",
+    "name": "The Silent Bell",
+    "aliases": ["La Cloche Silencieuse"],
+    "summary": "Recover all nine tones of the Bell of Nine Tides and access a pre-Starfall record.",
+    "description": "Kael knows seven tones, Nera's hidden map contains the eighth, and the ninth must be recorded inside the Drowned Archive during a reverse tide.",
+    "facts": [
+      "The full sequence can locate any surviving archive chamber.",
+      "A wrong tone summons two tide wraiths.",
+      "Salt-written notes remain invisible to the guardians."
+    ],
+    "tags": ["quest", "archive", "bell", "quête", "knowledge"],
+    "attributes": { "difficulty": "high", "region": "Western Shoals", "recommendedParty": 4 },
+    "relations": [
+      { "type": "repairs", "targetKey": "artifact:bell_nine_tides" },
+      { "type": "requires", "targetKey": "character:kael_tidemark" },
+      { "type": "requires", "targetKey": "character:nera_quill" },
+      { "type": "targets", "targetKey": "location:drowned_archive" }
+    ]
+  },
+  {
+    "key": "event:starfall",
+    "kind": "event",
+    "name": "The Starfall",
+    "aliases": ["Chute des Étoiles"],
+    "summary": "The celestial impact that shattered Aethoria's moon 312 years ago.",
+    "description": "Moon fragments struck Glasspeak and the western sea, creating emberglass and the reverse tides. The impact also disabled the provincial gate network.",
+    "facts": [
+      "The current calendar counts years After Starfall.",
+      "Moonshards retain fragments of the old moon's magical signature.",
+      "The Sunken Gate failed on the same night."
+    ],
+    "tags": ["event", "history", "moon", "événement", "cataclysm"],
+    "attributes": { "year": 0, "era": "After Starfall", "scope": "world" },
+    "relations": [
+      { "type": "changed", "targetKey": "world:aethoria" },
+      { "type": "created", "targetKey": "location:glasspeak" },
+      { "type": "disabled", "targetKey": "location:sunken_gate" }
+    ]
+  },
+  {
+    "key": "event:salt_rebellion",
+    "kind": "event",
+    "name": "The Salt Rebellion",
+    "aliases": ["Rébellion du Sel"],
+    "summary": "A coastal uprising that ended centralized rule eighty-seven years ago.",
+    "description": "The provinces rejected the crown's control of navigation and salt routes. The Tidebound were falsely blamed for sinking the royal fleet and were outlawed after the rebellion.",
+    "facts": [
+      "The last monarch disappeared during the final battle.",
+      "The Tidebound records contradict the official account.",
+      "Lumenport became a free city afterward."
+    ],
+    "tags": ["event", "rebellion", "politics", "événement", "history"],
+    "attributes": { "year": 225, "era": "After Starfall", "scope": "regional" },
+    "relations": [
+      { "type": "outlawed", "targetKey": "faction:tidebound" },
+      { "type": "freed", "targetKey": "location:lumenport" },
+      { "type": "preceded", "targetKey": "faction:lantern_court" }
+    ]
+  },
+  {
+    "key": "event:ashwood_pact",
+    "kind": "event",
+    "name": "The Ashwood Pact",
+    "aliases": ["Pacte de la Forêt de Cendre"],
+    "summary": "A living treaty between Lumenport and the Thorn Covenant.",
+    "description": "The pact keeps the road through the Ashwood open in exchange for a ban on fire and mining. The Ember Cartel's secret burned oath-tree is causing the treaty to fail.",
+    "facts": [
+      "The pact must be renewed every twenty-seven years.",
+      "Its current renewal is eleven days overdue.",
+      "Only a Thorn speaker and a Lumenport keeper can renew it."
+    ],
+    "tags": ["event", "treaty", "forest", "événement", "oath"],
+    "attributes": { "year": 285, "era": "After Starfall", "status": "failing" },
+    "relations": [
+      { "type": "binds", "targetKey": "faction:thorn_covenant" },
+      { "type": "binds", "targetKey": "faction:lantern_court" },
+      { "type": "threatened_by", "targetKey": "faction:ember_cartel" }
+    ]
+  }
+]

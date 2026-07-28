@@ -7,6 +7,12 @@ import {
   readWebSource,
   searchLocalSources,
 } from './sources.js'
+import {
+  fantasyCatalogStatus,
+  getFantasyEntity,
+  searchFantasyCatalog,
+  traceFantasyRelations,
+} from './fantasy-catalog.js'
 import { parseAllowedHosts, parseAllowedRoots } from './security.js'
 
 export const SERVER_NAME = 'complexity-source-mcp'
@@ -49,6 +55,13 @@ function errorResult(error) {
   return {
     isError: true,
     content: [{ type: 'text', text: `Source read failed: ${message}` }],
+  }
+}
+
+function structuredResult(name, value) {
+  return {
+    content: [{ type: 'text', text: JSON.stringify(value, null, 2) }],
+    structuredContent: { [name]: value },
   }
 }
 
@@ -195,6 +208,76 @@ export function createSourceServer(options = {}) {
       }, null, 2),
     }],
   }))
+
+  server.registerTool('search_fantasy_catalog', {
+    title: 'Search the fantasy catalog',
+    description: 'Searches canonical fantasy entity cards stored in the managed catalog. Results include facts, relations, and provenance and never modify the catalog.',
+    inputSchema: {
+      query: z.string().min(1).max(300),
+      kinds: z.array(z.enum([
+        'world',
+        'location',
+        'faction',
+        'character',
+        'creature',
+        'artifact',
+        'quest',
+        'event',
+      ])).max(8).optional(),
+      maxResults: z.number().int().min(1).max(12).optional(),
+    },
+    annotations: { ...readOnlyAnnotations, openWorldHint: false },
+  }, async (input) => {
+    try {
+      return structuredResult('search', await searchFantasyCatalog(input))
+    } catch (error) {
+      return errorResult(error)
+    }
+  })
+
+  server.registerTool('get_fantasy_entity', {
+    title: 'Read one fantasy entity card',
+    description: 'Reads one canonical fantasy entity card and its directly related cards by stable key.',
+    inputSchema: {
+      key: z.string().min(1).max(160),
+    },
+    annotations: { ...readOnlyAnnotations, openWorldHint: false },
+  }, async (input) => {
+    try {
+      return structuredResult('record', await getFantasyEntity(input))
+    } catch (error) {
+      return errorResult(error)
+    }
+  })
+
+  server.registerTool('trace_fantasy_relations', {
+    title: 'Trace fantasy relations',
+    description: 'Traverses a bounded relation graph around one canonical fantasy entity card for multi-entity reasoning.',
+    inputSchema: {
+      key: z.string().min(1).max(160),
+      maxDepth: z.number().int().min(1).max(3).optional(),
+    },
+    annotations: { ...readOnlyAnnotations, openWorldHint: false },
+  }, async (input) => {
+    try {
+      return structuredResult('graph', await traceFantasyRelations(input))
+    } catch (error) {
+      return errorResult(error)
+    }
+  })
+
+  server.registerTool('fantasy_catalog_status', {
+    title: 'Check fantasy catalog status',
+    description: 'Returns only aggregate readiness and entity counts for the managed fantasy catalog.',
+    inputSchema: {},
+    annotations: { ...readOnlyAnnotations, openWorldHint: false },
+  }, async () => {
+    try {
+      return structuredResult('catalog', await fantasyCatalogStatus())
+    } catch (error) {
+      return errorResult(error)
+    }
+  })
 
   return server
 }

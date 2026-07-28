@@ -1,10 +1,29 @@
 #!/usr/bin/env node
 
 import { createServer } from 'node:http'
+import { readFile } from 'node:fs/promises'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js'
 import { createSourceServer, SERVER_NAME, SERVER_VERSION } from './mcp-server.js'
+import { seedFantasyCatalog } from './fantasy-catalog.js'
 import { parseAllowedRoots } from './security.js'
+
+async function seedManagedFantasyCatalog() {
+  if (process.env.FANTASY_AUTO_SEED !== 'true' || !process.env.MONGODB_URI?.trim()) return
+  try {
+    const seed = JSON.parse(
+      await readFile(new URL('../data/fantasy-seed.json', import.meta.url), 'utf8'),
+    )
+    const result = await seedFantasyCatalog(seed)
+    console.error(
+      `Fantasy catalog ready: ${result.entities} cards (${result.inserted} inserted, ${result.updated} refreshed)`,
+    )
+  } catch (error) {
+    console.error(
+      `Fantasy catalog initialization failed: ${error instanceof Error ? error.message : String(error)}`,
+    )
+  }
+}
 
 async function startStdio() {
   const server = createSourceServer()
@@ -13,6 +32,7 @@ async function startStdio() {
 }
 
 async function startHttp() {
+  await seedManagedFantasyCatalog()
   const port = Number(process.env.PORT ?? 8790)
   const host = process.env.HOST ?? '127.0.0.1'
   const mcpPath = '/mcp'

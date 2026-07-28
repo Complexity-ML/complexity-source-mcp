@@ -14,11 +14,13 @@
   "scripts": {
     "start": "node src/cli.js",
     "start:http": "node src/cli.js --http",
+    "seed:fantasy": "node src/seed-fantasy.js",
     "test": "node --test",
     "smoke": "node scripts/smoke.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.2",
+    "mongodb": "^7.5.0",
     "zod": "^4.3.6"
   }
 }
