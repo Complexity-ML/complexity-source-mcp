@@ -1,0 +1,24 @@
+{
+  "name": "complexity-source-mcp",
+  "version": "0.1.0",
+  "description": "Read-only MCP server that gives AI systems verifiable web, GitHub, file, and image sources.",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "complexity-source-mcp": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "start:http": "node src/cli.js --http",
+    "test": "node --test",
+    "smoke": "node scripts/smoke.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2",
+    "zod": "^4.3.6"
+  }
+}
